@@ -14,7 +14,7 @@ You also can specify several arguments at one call.
 2. `trlt %USERPROFILE%/MyDirectoryWithRussianNamedFiles` will transliterate all files inside specified directory.
 3. `trlt dirname файл.ext строка` will transliterate all files in dirname, файл and show stroka.
 
-##TODO
+## TODO
 I want to add some options:
 * `-h` to show help.
 * `-s` to specify should program replace spaces with underscores.
