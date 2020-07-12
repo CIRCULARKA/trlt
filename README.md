@@ -4,7 +4,7 @@ If you found a problem with the program please open issue.
 
 ## How to use
 I recommend to add this utility to your PATH.
-To use it just type `trlt value`. Instead of value you can put filename that you want to transliterate,
+To use it just type `trlt value`. Instead of `value` you can put filename that you want to transliterate,
 directory name in which case all cyrillic-named files in this directory will be transliterated.
 If program can't find specified file or directory it just transliterate specified string.
 You also can specify several arguments at one call.
