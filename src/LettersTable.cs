@@ -81,14 +81,8 @@ namespace trlt
 
 		public string GetTransliteration(string value)
 		{
-			try
-			{
-				return table[value];
-			}
-			catch (KeyNotFoundException)
-			{
-				return value;
-			}
+			try { return table[value]; }
+			catch (KeyNotFoundException) { return value; }
 		}
 	}
 }

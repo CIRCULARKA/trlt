@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using tlrt.Containers;
 
 namespace trlt
 {
@@ -15,30 +16,10 @@ namespace trlt
 			return result;
 		}
 
-
-        static void ShowSuccessMsg(string value)
-        {
-            ConsoleColor native_color = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(value);
-            Console.ForegroundColor = native_color;
-        }
-
-        static void ShowLogMsg(string value)
-        {
-            Console.WriteLine(value);
-        }
-
-        static void ShowErrMsg(string value)
-        {
-            ConsoleColor native_color = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(value);
-            Console.ForegroundColor = native_color;
-        }
-
 		static void Main(string[] args)
 		{
+			var messages = new MessagesToUser();
+
             // Proceed all args
 			for (int i = 0; i < args.Length; i++)
 			{
@@ -50,28 +31,27 @@ namespace trlt
 					{
 						FileInfo file = new FileInfo(args[i]);
 						file.MoveTo(file.DirectoryName + "/" + TrltString(file.Name));
-                       ShowSuccessMsg("File transliterated successfully.");
+                       messages.ShowSuccessMsg("File transliterated successfully.");
 					}
                     // Plan B - attempt to rename all files in directory
 					catch (FileNotFoundException)
 					{
 						var dir = new DirectoryInfo(args[i]);
 						FileInfo[] files = dir.GetFiles();
-						ShowLogMsg("Processing...");
+						messages.ShowLogMsg("Processing...");
 						for (int j = 0; j < files.Length; j++)
 							files[j].MoveTo(files[j].DirectoryName + "/" + TrltString(files[j].Name));
-                        ShowSuccessMsg("All files in specified directory transliterated successfully.");
+                        messages.ShowSuccessMsg("All files in specified directory transliterated successfully.");
 					}
 				}
                 // Plan C - if specified directory or file wasn't found the program return transliterated string
 				catch (DirectoryNotFoundException)
 				{
-					ShowLogMsg("Specified file/directory not found. Instead of it here is your string:");
 					Console.WriteLine(TrltString(args[i]));
 				}
 				catch
 				{
-					ShowErrMsg("Unexpected error.");
+					messages.ShowErrMsg("Unexpected error.");
 				}
 			}
 		}
