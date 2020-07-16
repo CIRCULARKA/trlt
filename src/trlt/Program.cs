@@ -20,23 +20,24 @@ namespace trlt
 		{
 			var messages = new MessagesToUser();
 
-            // Proceed all args
-			for (int i = 0; i < args.Length; i++)
+			const int OPTION_POS = 1, VALUE_POS = 0;
+
+
+			if (args.Length == 2)
 			{
-				Console.Write((i + 1) + ": ");
 				try
 				{
                     // Firstly - attempt to rename file
 					try
 					{
-						FileInfo file = new FileInfo(args[i]);
+						FileInfo file = new FileInfo(args[VALUE_POS]);
 						file.MoveTo(file.DirectoryName + "/" + TrltString(file.Name));
                        messages.ShowSuccessMsg("File transliterated successfully.");
 					}
                     // Plan B - attempt to rename all files in directory
 					catch (FileNotFoundException)
 					{
-						var dir = new DirectoryInfo(args[i]);
+						var dir = new DirectoryInfo(args[VALUE_POS]);
 						FileInfo[] files = dir.GetFiles();
 						messages.ShowLogMsg("Processing...");
 						for (int j = 0; j < files.Length; j++)
@@ -47,7 +48,7 @@ namespace trlt
                 // Plan C - if specified directory or file wasn't found the program return transliterated string
 				catch (DirectoryNotFoundException)
 				{
-					Console.WriteLine(TrltString(args[i]));
+					Console.WriteLine(TrltString(args[VALUE_POS]));
 				}
 				catch
 				{
