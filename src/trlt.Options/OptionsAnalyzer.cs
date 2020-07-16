@@ -4,36 +4,33 @@ namespace trlt.Options
 {
 	class OptionsAnalyzer
 	{
-		string[] args;
+		string usr_option;
 		ValidOptions valid_options;
-		OptionsActivator activate;
+		OptionsActivator activator;
 		MessagesToUser messages;
 
 
-		public OptionsAnalyzer(string[] _args)
+		public OptionsAnalyzer(string _option)
 		{
-			args = _args;
+			usr_option = _option;
 			valid_options = new ValidOptions();
-			activate = new OptionsActivator();
+			activator = new OptionsActivator();
 			messages = new MessagesToUser();
 
 		}
 
-		bool IsValidOption(string _option)
+		bool IsValidOption()
 		{
-			foreach (Option option in valid_options.GetValidOptions)
-				if (_option == option.ShortName || _option == option.FullName)
+			foreach (Option _option in valid_options.GetValidOptions)
+				if (usr_option == _option.ShortName || usr_option == _option.FullName)
 					return true;
 			return false;
 		}
 
 		public void OptionCheck()
 		{
-			foreach (string arg in args)
-			{
-				// if (IsValidOption(arg))
-					// activate
-			}
+			// if (IsValidOption())
+			// 	activator.ActivateOption();
 		}
 	}
 }
