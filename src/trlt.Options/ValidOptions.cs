@@ -2,6 +2,7 @@ namespace trlt.Options
 {
 	class ValidOptions
 	{
+		// Don't forget to add option at OptionName enum in the same order
 		public Option[] GetValidOptions =>
 			new Option[]
 			{
@@ -12,5 +13,10 @@ namespace trlt.Options
 				new Option(".", "", "Transliterate all files in current directory."),
 				new Option("..", "", "Transliterate all files in upper directory.")
 			};
+
+		public Option GetOption(OptionName name)
+		{
+			return GetValidOptions[(int)name];
+		}
 	}
 }
