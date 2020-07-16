@@ -9,7 +9,6 @@ namespace trlt.Options
 		OptionsActivator activator;
 		MessagesToUser messages;
 
-
 		public OptionsAnalyzer(string _option)
 		{
 			usr_option = _option;
@@ -29,8 +28,8 @@ namespace trlt.Options
 
 		public void OptionCheck()
 		{
-			// if (IsValidOption())
-			// 	activator.ActivateOption();
+			if (IsValidOption())
+				activator.ActivateOption(usr_option);
 		}
 	}
 }
