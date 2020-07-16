@@ -1,4 +1,4 @@
-using tlrt.Containers;
+using trlt.Containers;
 
 namespace trlt.Options
 {
@@ -7,14 +7,14 @@ namespace trlt.Options
 		string usr_option;
 		ValidOptions valid_options;
 		OptionsActivator activator;
-		MessagesToUser messages;
+		UserMessagesSender messages;
 
 		public OptionsAnalyzer(string _option)
 		{
 			usr_option = _option;
 			valid_options = new ValidOptions();
 			activator = new OptionsActivator();
-			messages = new MessagesToUser();
+			messages = new UserMessagesSender();
 
 		}
 
